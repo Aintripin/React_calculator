@@ -30,6 +30,14 @@ function reducer(state, {type, payload}) {
       if (state.currentOperand == null && state.previousOperand == null){
         return state
       }
+
+      if (state.currentOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+        }
+      }
+
       if (state.previousOperand == null) {
         return {
           ...state,
@@ -47,6 +55,14 @@ function reducer(state, {type, payload}) {
       }
     case ACTIONS.CLEAR:
         return {}
+    case ACTIONS.EVALUATE:
+      if (
+        state.operation == null || 
+        state.currentOperand == null || 
+        state.previousOperand == null
+        ) {
+        return state
+      }
   }
 }
 
@@ -88,7 +104,8 @@ function App() {
 
       <button 
         className = "span-two" 
-        onClick = {() => dispatch({type: ACTIONS.CLEAR})}>
+        onClick = {() => dispatch({type: ACTIONS.CLEAR})}
+      >
           AC
       </button>
       <button> DEL</button>
@@ -107,7 +124,12 @@ function App() {
       <OperationButton operation = "-" dispatch = {dispatch} />
       <DigitButton digit = "." dispatch = {dispatch} />
       <DigitButton digit = "0" dispatch = {dispatch} />
-      <button className = "span-two"> = </button>
+      <button 
+        className = "span-two"
+        onClick = {() => dispatch({type: ACTIONS.EVALUATE})}
+      >
+        = 
+      </button>
     </div>
   );
 }
