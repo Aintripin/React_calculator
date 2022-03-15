@@ -106,6 +106,19 @@ function reducer(state, {type, payload}) {
   }
 }
 
+const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
+  maximumFractionDigits: 0,
+
+})
+
+function formatOperand(operand) {
+  if (operand == null) return     // returns nothing
+  const [integer, decimal] = operand.split('.')
+  if (decimal == null) {
+    return INTEGER_FORMATTER.format(integer)
+  }
+}
+
 function evaluate({currentOperand, previousOperand, operation}) {
   const prev = parseFloat(previousOperand)
   const current = parseFloat(currentOperand)
@@ -137,8 +150,8 @@ function App() {
   return (
     <div className = "calculator-grid">
       <div className = "output">
-        <div className = "previous-operand"> {previousOperand} {operation} </div>
-        <div className = "current-operand"> {currentOperand} </div>
+        <div className = "previous-operand"> {formatOperand(previousOperand)} {operation} </div>
+        <div className = "current-operand"> {formatOperand(currentOperand)} </div>
       </div>
 
 
