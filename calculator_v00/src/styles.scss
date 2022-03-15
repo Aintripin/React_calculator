@@ -2,6 +2,8 @@
     box-sizing: border-box;
 }
 
+
+
 body {
     margin: 0;
     background: linear-gradient(to right, #00AAFF, #00FF6C);
@@ -22,6 +24,7 @@ body {
     border: 1px solid white;
     outline: none;
     background: rgba(255, 255, 255, .75);
+    border-radius: 0px;
 }
 
 .calculator-grid > button:hover,
@@ -43,6 +46,7 @@ body {
     padding: .75rem;
     word-wrap: break-word;
     word-break: break-all;
+    border-radius: 7px;
 }
 
 .output .previous-operand {
@@ -53,4 +57,31 @@ body {
 .output .current-operand {
     color: white;
     font-size: 2.5rem;
+}
+
+
+// trying to implement glassmorphism
+
+// body {
+//     background-color: #111927;
+//     background-image: 
+//         radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), 
+//         radial-gradient(at 82% 65%, hsl(218.00, 39%, 11%) 0, transparent 55%);
+// }
+
+/* Glassmorphism card effect */
+.output{
+    backdrop-filter: blur(11px) saturate(157%);
+    -webkit-backdrop-filter: blur(11px) saturate(157%);
+    background-color: rgba(17, 25, 40, 0.61);
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.calculator-grid > button{
+    backdrop-filter: blur(11px) saturate(157%);
+    -webkit-backdrop-filter: blur(11px) saturate(157%);
+    background-color: rgba(255, 255, 255, 0.61);
+    // border-radius: 1px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
 }
