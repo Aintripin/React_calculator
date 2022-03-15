@@ -26,7 +26,19 @@ function reducer(state, {type, payload}) {
         ...state,
         currentOperand: `${state.currentOperand || ""}${payload.digit}`
       }  
-      case ACTIONS.CLEAR:
+    case ACTIONS.CHOSE_OPERATION:           // if we have nothing on the screen and try to click on any operator, nothing's gonna happen
+      if (state.currentOperand == null && state.previousOperand == null){
+        return state
+      }
+      if (state.previousOperand == null) {
+        return {
+          ...state,
+          operation: payload.operation,
+          previousOperand: state.currentOperand,
+          currentOperand: null
+        }
+      }
+    case ACTIONS.CLEAR:
         return {}
   }
 }
