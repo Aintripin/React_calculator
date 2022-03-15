@@ -117,6 +117,7 @@ function formatOperand(operand) {
   if (decimal == null) {
     return INTEGER_FORMATTER.format(integer)
   }
+  return `${INTEGER_FORMATTER.format(integer)}.${decimal}`
 }
 
 function evaluate({currentOperand, previousOperand, operation}) {
